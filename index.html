@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daniel e Luciana - Casamento & Confirmação de Presença</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f5f2eb;
+            font-family: 'Montserrat', sans-serif;
+            color: #4a4039;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background: #faf8f3;
+            border: 1px solid #d4c5b9;
+            box-shadow: 0 6px 25px rgba(0,0,0,0.06);
+            padding: 40px 30px;
+            box-sizing: border-box;
+            text-align: center;
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .section-divider {
+            margin: 35px 0;
+            border: none;
+            border-top: 1px solid #d4c5b9;
+            position: relative;
+        }
+        .section-divider::after {
+            content: "♥";
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #faf8f3;
+            padding: 0 10px;
+            color: #8b7355;
+            font-size: 12px;
+        }
+        .quote {
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #7a6858;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 42px;
+            font-weight: 400;
+            color: #3b3028;
+            margin: 15px 0;
+            font-style: italic;
+        }
+        .intro-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 20px;
+            font-style: italic;
+            color: #5c4e43;
+            margin: 20px 0 30px 0;
+            line-height: 1.4;
+        }
+        .details-grid {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin: 25px 0;
+            text-align: center;
+        }
+        .detail-item {
+            flex: 1;
+            padding: 0 5px;
+        }
+        .detail-item h3 {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #7a6858;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .detail-item p {
+            font-size: 13px;
+            color: #4a4039;
+            line-height: 1.4;
+            margin: 0;
+        }
+        .card-box {
+            border: 1px solid #d4c5b9;
+            border-radius: 8px;
+            padding: 25px 20px;
+            margin: 25px 0;
+            background: #fff;
+            text-align: left;
+        }
+        .card-box h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 24px;
+            color: #3b3028;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-weight: 400;
+            text-align: center;
+        }
+        .card-box p {
+            font-size: 14px;
+            line-height: 1.5;
+            color: #5c4e43;
+            margin: 12px 0;
+        }
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #5c4e43;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #d4c5b9;
+            border-radius: 4px;
+            background: #faf8f3;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+        }
+        .btn {
+            background-color: #8b7355;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background-color: #6d5840;
+        }
+        .closing {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 22px;
+            font-style: italic;
+            color: #3b3028;
+            margin-top: 30px;
+        }
+        .admin-section {
+            background: #fff;
+            border: 2px dashed #8b7355;
+            padding: 25px;
+            border-radius: 8px;
+            margin-top: 30px;
+            text-align: left;
+            display: none;
+        }
+        .admin-toggle {
+            background: none;
+            border: none;
+            color: #8b7355;
+            font-size: 12px;
+            text-decoration: underline;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 13px;
+        }
+        th, td {
+            border: 1px solid #d4c5b9;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f5f2eb;
+            color: #3b3028;
+        }
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background: #faf8f3;
+            padding: 30px;
+            border-radius: 8px;
+            border: 1px solid #d4c5b9;
+            width: 90%;
+            max-width: 350px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="quote">Amor é o começo de tudo. ♥</div>
+    
+    <h1>Daniel e Luciana</h1>
+    
+    <p class="intro-text">Gostaríamos de dividir o momento da nossa união com pessoas especiais.</p>
+    
+    <div class="details-grid">
+        <div class="detail-item">
+            <h3>Data & Local</h3>
+            <p><strong>07 de Novembro de 2026</strong><br>Às 10:45h<br>Cartório Parra</p>
+        </div>
+        <div class="detail-item">
+            <h3>Recepção</h3>
+            <p><strong>Após a Cerimônia</strong><br>Nos reuniremos para comemorar às 11:30h</p>
+        </div>
+        <div class="detail-item">
+            <h3>Restaurante</h3>
+            <p><strong>Restaurante Palhana</strong><br>Av. Castro Alves<br>Nº 1660</p>
+        </div>
+    </div>
+
+    <div class="closing" style="font-size: 18px; margin: 20px 0;">
+        Será uma alegria ter você conosco!
+    </div>
+
+    <hr class="section-divider">
+
+    <div style="font-family: 'Cormorant Garamond', serif; font-size: 28px; font-style: italic; color: #3b3028; margin-bottom: 10px;">
+        Comunicado especial
+    </div>
+    <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: #7a6858; margin-bottom: 20px;">
+        Aos Convidados
+    </div>
+
+    <p style="font-size: 14px; line-height: 1.5; color: #5c4e43; margin-bottom: 20px;">
+        Com muito carinho, Daniel e Luciana terão o prazer de receber vocês para um almoço de confraternização após a cerimônia.<br>
+        Será uma alegria compartilhar esse momento tão especial com pessoas queridas!
+    </p>
+
+    <div class="card-box">
+        <p>🍽️ Informamos que cada convidado ficará responsável pelo pagamento de sua própria conta no restaurante.</p>
+        <hr style="border: none; border-top: 1px solid #eee; margin: 15px 0;">
+        <p>📅 Aguardamos confirmação de presença até o dia <strong>25 de outubro</strong>.</p>
+    </div>
+
+    <div class="card-box" id="rsvp-box">
+        <h2>Confirme sua Presença</h2>
+        <form id="rsvpForm">
+            <div class="form-group">
+                <label for="nome">Nome do Convidado:</label>
+                <input type="text" id="nome" required placeholder="Digite seu nome completo">
+            </div>
+            <div class="form-group">
+                <label for="telefone">Telefone do Convidado:</label>
+                <input type="text" id="telefone" required placeholder="(00) 00000-0000">
+            </div>
+            <button type="submit" class="btn">Confirmar Presença</button>
+        </form>
+        <div id="rsvp-success" style="display:none; color: #2e7d32; font-weight: 600; text-align: center; margin-top: 15px;">
+            Presença confirmada com sucesso! Muito obrigado(a).
+        </div>
+    </div>
+
+    <p style="font-size: 13px; color: #5c4e43; line-height: 1.5; margin-top: 20px;">
+        Agradecemos pela compreensão e, principalmente, pela presença e pelo carinho de todos nesse dia tão importante para nós.
+    </p>
+
+    <div class="closing">
+        Com amor,<br>
+        <span style="font-size: 26px;">Daniel e Luciana</span>
+    </div>
+
+    <button class="admin-toggle" onclick="toggleAdmin()">Área dos Noivos (Gerenciar Convidados & Planilha)</button>
+
+    <div class="modal-overlay" id="senhaModal">
+        <div class="modal-content">
+            <h3>Área dos Noivos</h3>
+            <p style="font-size: 13px; color: #666; margin-bottom: 15px;">Digite a senha de acesso:</p>
+            <div class="form-group">
+                <input type="password" id="senhaInput" placeholder="Sua senha">
+            </div>
+            <button class="btn" onclick="verificarSenha()" style="margin-bottom: 10px;">Entrar</button>
+            <button class="btn" onclick="fecharModal()" style="background-color: #a89f91;">Cancelar</button>
+        </div>
+    </div>
+
+    <div class="admin-section" id="adminSection">
+        <h3>Painel dos Noivos - Lista de Confirmados</h3>
+        <p style="font-size: 13px; color: #666;">Aqui você acompanha em tempo real quem confirmou presença e pode baixar a planilha em Excel.</p>
+        <div style="margin-bottom: 15px;">
+            <a href="/api/baixar-planilha" class="btn" style="background-color: #2e7d32; display: inline-block; text-decoration: none; box-sizing: border-box; text-align: center;">Baixar Planilha de Confirmados (.xlsx)</a>
+        </div>
+        <div style="overflow-x: auto;">
+            <table id="tabelaConfirmados">
+                <thead>
+                    <tr>
+                        <th>Nome do Convidado</th>
+                        <th>Telefone</th>
+                        <th>Data/Hora</th>
+                    </tr>
+                </thead>
+                <tbody id="listaConfirmadosBody">
+                    <tr><td colspan="3" style="text-align:center;">Carregando...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('rsvpForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        let nome = document.getElementById('nome').value;
+        let telefone = document.getElementById('telefone').value;
+
+        try {
+            let response = await fetch('/api/confirmar', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ nome, telefone })
+            });
+            
+            let result = await response.json();
+            if (response.ok) {
+                document.getElementById('rsvpForm').style.display = 'none';
+                document.getElementById('rsvp-success').style.display = 'block';
+            } else {
+                alert(result.error || "Erro ao confirmar presença.");
+            }
+        } catch (err) {
+            alert("Erro de conexão com o servidor.");
+        }
+    });
+
+    async function carregarTabela() {
+        try {
+            let response = await fetch('/api/confirmados');
+            let confirmados = await response.json();
+            let tbody = document.getElementById('listaConfirmadosBody');
+            tbody.innerHTML = '';
+
+            if (confirmados.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="3" style="text-align:center;">Nenhuma confirmação registrada ainda.</td></tr>';
+                return;
+            }
+
+            confirmados.forEach(c => {
+                let tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${c.nome}</td>
+                    <td>${c.telefone}</td>
+                    <td>${c.data}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        } catch (err) {
+            console.error("Erro ao carregar confirmados", err);
+        }
+    }
+
+    function toggleAdmin() {
+        let modal = document.getElementById('senhaModal');
+        modal.style.display = 'flex';
+    }
+
+    function fecharModal() {
+        document.getElementById('senhaModal').style.display = 'none';
+        document.getElementById('senhaInput').value = '';
+    }
+
+    function verificarSenha() {
+        let senha = document.getElementById('senhaInput').value;
+        if (senha === "1210danilu" || senha === "Daniel" || senha === "Luciana") {
+            document.getElementById('senhaModal').style.display = 'none';
+            document.getElementById('senhaInput').value = '';
+            let sec = document.getElementById('adminSection');
+            sec.style.display = 'block';
+            carregarTabela();
+        } else {
+            alert("Senha incorreta!");
+            document.getElementById('senhaInput').value = '';
+        }
+    }
+</script>
+
+</body>
+</html>

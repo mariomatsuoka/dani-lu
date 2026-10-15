@@ -1,0 +1,11 @@
+INSTRUÇÕES DE USO DO SISTEMA DE CONVITE COMPLETO (COM PERSISTÊNCIA REAL):
+
+1. O que este pacote inclui:
+   - index.html: O site do convite fiel ao design original, com formulário de confirmação e painel protegido.
+   - server.js: O servidor em Node.js responsável por receber as confirmações de qualquer dispositivo e salvá-las permanentemente.
+   - package.json: As configurações e dependências do projeto.
+
+2. Como fazer funcionar em qualquer dispositivo e gerar o Excel:
+   - Para hospedar online gratuitamente e permitir que convidados de qualquer celular confirmem presença na mesma lista, você pode enviar estes arquivos para plataformas como Render, Railway ou Glitch.
+   - O servidor criará e atualizará automaticamente o arquivo de dados na nuvem.
+   - Quando os noivos entrarem na Área dos Noivos com a senha `1210danilu`, poderão visualizar todos os confirmados em tempo real e baixar o arquivo `.xlsx` atualizado.
